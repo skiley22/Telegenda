@@ -6,7 +6,7 @@ xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
 http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" version="2.5">
 	<servlet>
 		<servlet-name>Telegenda</servlet-name>
-		<servlet-class>com.fairfieldcloud.telegenda.TelegendaServlet</servlet-class>
+		<servlet-class>com.telegenda.presentation.TelegendaServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Telegenda</servlet-name>
