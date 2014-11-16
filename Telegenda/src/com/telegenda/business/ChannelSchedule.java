@@ -1,19 +1,12 @@
 package com.telegenda.business;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ChannelSchedule 
 {	
 	private Channel channel;
 	private List<Program> programSchedules;
-	
-	public ChannelSchedule()
-	{
-		channel = new Channel();
-		programSchedules = new ArrayList<>();
-	}
-	
+		
 	public ChannelSchedule(Channel channel, List<Program> programSchedules) {
 		this.channel = channel;
 		this.programSchedules = programSchedules;
