@@ -17,29 +17,29 @@
   "canonicalName": null, 
   "files": [
     {
-      "downloadUrl": "/downloads/calendar/v3/122/java/1.18.0-rc/google-api-services-calendar-v3-rev122-1.18.0-rc.jar", 
-      "path": "google-api-services-calendar-v3-rev122-1.18.0-rc.jar", 
+      "downloadUrl": "/downloads/calendar/v3/121/java/1.18.0-rc/google-api-services-calendar-v3-rev121-1.18.0-rc.jar", 
+      "path": "google-api-services-calendar-v3-rev121-1.18.0-rc.jar", 
       "type": "binary", 
-      "timestamp": "2015-04-14 06:26"
+      "timestamp": "2015-03-19 05:57"
     }, 
     {
-      "downloadUrl": "/downloads/calendar/v3/122/java/1.18.0-rc/google-api-services-calendar-v3-rev122-1.18.0-rc-javadoc.jar", 
-      "path": "google-api-services-calendar-v3-rev122-1.18.0-rc-javadoc.jar", 
+      "downloadUrl": "/downloads/calendar/v3/121/java/1.18.0-rc/google-api-services-calendar-v3-rev121-1.18.0-rc-javadoc.jar", 
+      "path": "google-api-services-calendar-v3-rev121-1.18.0-rc-javadoc.jar", 
       "type": "documentation", 
-      "timestamp": "2015-04-14 06:26"
+      "timestamp": "2015-03-19 05:57"
     }, 
     {
-      "downloadUrl": "/downloads/calendar/v3/122/java/1.18.0-rc/google-api-services-calendar-v3-rev122-1.18.0-rc-sources.jar", 
-      "path": "google-api-services-calendar-v3-rev122-1.18.0-rc-sources.jar", 
+      "downloadUrl": "/downloads/calendar/v3/121/java/1.18.0-rc/google-api-services-calendar-v3-rev121-1.18.0-rc-sources.jar", 
+      "path": "google-api-services-calendar-v3-rev121-1.18.0-rc-sources.jar", 
       "type": "source", 
-      "timestamp": "2015-04-14 07:07"
+      "timestamp": "2015-03-19 06:37"
     }, 
     {
-      "path": "google-api-services-calendar-v3-rev122-1.18.0-rc.jar.properties", 
+      "path": "google-api-services-calendar-v3-rev121-1.18.0-rc.jar.properties", 
       "type": "android.properties"
     }
   ], 
-  "revision": 122, 
+  "revision": 121, 
   "language": "java", 
   "language_version": "1.18.0-rc", 
   "dependencies": [

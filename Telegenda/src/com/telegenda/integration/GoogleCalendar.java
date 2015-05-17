@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.GregorianCalendar;
 import java.util.TimeZone;
 
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
@@ -19,7 +18,6 @@ import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventAttendee;
 import com.google.api.services.calendar.model.EventDateTime;
-import com.telegenda.business.Listing;
 import com.telegenda.business.Program;
 
 public class GoogleCalendar 
@@ -27,11 +25,11 @@ public class GoogleCalendar
 	private static final String APPLICATION_NAME = "Telegenda";
 	private static final String SERVICE_ACCOUNT_EMAIL = "769449426385-vik1epa1ak3vj9qnfla6oqam7jjqm615@developer.gserviceaccount.com";
 	String privateKeyPw= "notasecret";
-	private static final String MASTER_ACCOUNT = "skiley22@gmail.com";
+	//private static final String MASTER_ACCOUNT = "skiley22@gmail.com";
 	private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 	private static final TimeZone EST = TimeZone.getTimeZone("America/New_York");
 	private static HttpTransport httpTransport;
-	private String summary, description, vendorCalendarId;
+	private String summary, description/*, vendorCalendarId*/;
 	private EventDateTime startTime, endTime;
 	private ArrayList<EventAttendee> attendees;
 	private Calendar service;
@@ -51,14 +49,14 @@ public class GoogleCalendar
 		service = new Calendar.Builder(httpTransport, JSON_FACTORY,
 				credential).setApplicationName(APPLICATION_NAME).build();
 	}	
-	public String createEvent(Listing l) throws GeneralSecurityException,
+	public String createEvent(Program p) throws GeneralSecurityException,
 	IOException {
-		summary = l.getProgram().getTitle();
-		description = l.getProgram().getTitle() + " on Channel " + l.getChannel().getNumber();
-		startTime = new EventDateTime().setDateTime(new DateTime(l.getProgram().getStartTime(), EST));
-		endTime = new EventDateTime().setDateTime(new DateTime(l.getProgram().getEndTime(), EST));
+		summary = p.getTitle();
+		description = p.getDescription() + " on " + p.getChannel();
+		startTime = new EventDateTime().setDateTime(new DateTime(p.getStartTime(), EST));
+		endTime = new EventDateTime().setDateTime(new DateTime(p.getEndTime(), EST));
 		
-		System.out.println("Start time: " + startTime.toPrettyString() + " End time: " + l.getProgram().getEndTime().getTime());
+		System.out.println("Start time: " + startTime.toPrettyString() + " End time: " + p.getEndTime().getTime());
 		
 		attendees = new ArrayList<EventAttendee>();
 		attendees.add(new EventAttendee().setEmail("skiley22@gmail.com"));
