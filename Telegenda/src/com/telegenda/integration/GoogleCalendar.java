@@ -34,7 +34,7 @@ public class GoogleCalendar
 	private ArrayList<EventAttendee> attendees;
 	private Calendar service;
 	
-	public GoogleCalendar() throws GeneralSecurityException, IOException
+	public GoogleCalendar(Calendar calendar) throws GeneralSecurityException, IOException
 	{
 		httpTransport = GoogleNetHttpTransport.newTrustedTransport();
 		GoogleCredential credential = new GoogleCredential.Builder()

@@ -1,43 +1,66 @@
 $(function()
 {
-	var clientId = '769449426385-h1qni0it927etkeb3kpd4h1tru5g78q1.apps.googleusercontent.com';
-	var apiKey = 'AIzaSyAxpZVJehgvcmPeI9XZEhCcTmAuT3sbxKk';
-	var scopes = 'https://www.googleapis.com/auth/calendar';
-
-	var config = 
-	{
-          'client_id': clientId,
-          'scope': scopes
-    };
-    gapi.auth.authorize(config, function() {
-    //console.log('login complete');
-	//	console.log(gapi.auth.getToken());
-	alert(gapi.auth.getToken());
-	});
-	
-
-	/*$.ajax(
-		{
-			type: "POST",
-			url: "https://enernet-calc-engine-001.appspot.com/api/v1/measure_calc",
-			data: 
-			{ 
-				id: "400ced5c-65b6-4711-8442-f4160121",
-				projectedsigndate: "2014-05-07-11-43",
-				program: "HES",
-				ecmfan: "Yes",
-				fueltype: "Gas",
-				existingafueknown: "false",
-				existingafue: "0",
-				homesqft: "2300",
-				yearhomebuilt: "1987",
-				yearfurnaceinstalled: "1988",
-				newafue: "95"
-			}
-		})
-		.done(function( msg ) 
-		{
-			alert( "Data Saved: " + msg );
-		});
-	});*/
 });
+
+     // Enter a client ID for a web application from the Google Developer Console.
+      // The provided clientId will only work if the sample is run directly from
+      // https://google-api-javascript-client.googlecode.com/hg/samples/authSample.html
+      // In your Developer Console project, add a JavaScript origin that corresponds to the domain
+      // where you will be running the script.
+      // var clientId = '837050751313';
+      
+
+      // Enter the API key from the Google Develoepr Console - to handle any unauthenticated
+      // requests in the code.
+      // The provided key works for this sample only when run from
+      // https://google-api-javascript-client.googlecode.com/hg/samples/authSample.html
+      // To use in your own application, replace this API key with your own.
+      
+
+      // To enter one or more authentication scopes, refer to the documentation for the API.
+      
+
+      // Use a button to handle authentication the first time.
+      function handleClientLoad() {
+        gapi.client.setApiKey(apiKey);
+        window.setTimeout(checkAuth,1);
+      }
+
+      function checkAuth() {
+        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: true}, handleAuthResult);
+      }
+
+
+      function handleAuthResult(authResult) {
+        var authorizeButton = document.getElementById('authorize-button');
+        if (authResult && !authResult.error) {
+          authorizeButton.style.visibility = 'hidden';
+          makeApiCall();
+        } else {
+          authorizeButton.style.visibility = '';
+          authorizeButton.onclick = handleAuthClick;
+        }
+      }
+
+      function handleAuthClick(event) {
+        gapi.auth.authorize({client_id: clientId, scope: scopes, immediate: false}, handleAuthResult);
+        return false;
+      }
+
+      // Load the API and make an API call.  Display the results on the screen.
+      function makeApiCall() {
+        gapi.client.load('plus', 'v1', function() {
+          var request = gapi.client.plus.people.get({
+            'userId': 'me'
+          });
+          request.execute(function(resp) {
+            var heading = document.createElement('h4');
+            var image = document.createElement('img');
+            image.src = resp.image.url;
+            heading.appendChild(image);
+            heading.appendChild(document.createTextNode(resp.displayName));
+
+            document.getElementById('content').appendChild(heading);
+          });
+        });
+      }

@@ -68,6 +68,8 @@ public class ListingsServlet extends HttpServlet {
 				    
 			    String output = "";
 			    
+			    //String[] keywords = {"Football","Celtics","Gotham","Grantland"};
+			    
 		    	for(Program prog : listings)
 		    		if(prog.getTitle().toLowerCase().contains(keyword) || prog.getDescription().toLowerCase().contains(keyword) || prog.getEpisodeTitle().toLowerCase().contains(keyword))
 		    			matchedListings.add(prog);

@@ -7,8 +7,6 @@ import javax.servlet.http.*;
 
 import com.google.api.client.auth.oauth2.AuthorizationCodeFlow;
 import com.google.api.client.extensions.appengine.auth.oauth2.AbstractAppEngineAuthorizationCodeServlet;
-import com.telegenda.integration.GoogleCalendar;
-import com.telegenda.integration.TvGuide;
 
 public class TelegendaServlet extends AbstractAppEngineAuthorizationCodeServlet {
 	
@@ -18,8 +16,8 @@ public class TelegendaServlet extends AbstractAppEngineAuthorizationCodeServlet 
 	{
 		try
 		{
-		    GoogleCalendar gc = new GoogleCalendar(Utils.loadCalendarClient());
-		    gc.createEvent(new TvGuide().getListings().get(0));
+		   // GoogleCalendar gc = new GoogleCalendar(Utils.loadCalendarClient());
+		    //gc.createEvent(new TvGuide().getListings().get(0));
 		}
 		catch(Exception e)
 		{
