@@ -7,7 +7,7 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
 
   <servlet>
     <servlet-name>oauth2Callback</servlet-name>
-    <servlet-class>com.google.api.services.samples.calendar.appengine.server.OAuth2Callback</servlet-class>
+    <servlet-class>com.telegenda.presentation.OAuth2Callback</servlet-class>
   </servlet>
 
   <servlet-mapping>
@@ -16,19 +16,9 @@ http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
   </servlet-mapping>
 
   <servlet>
-    <servlet-name>calendarServiceServlet</servlet-name>
-    <servlet-class>com.google.api.services.samples.calendar.appengine.server.CalendarGwtRpcSample</servlet-class>
-  </servlet>
-
-  <servlet>
     <servlet-name>sample</servlet-name>
-    <servlet-class>com.google.api.services.samples.calendar.appengine.server.CalendarAppEngineSample</servlet-class>
+    <servlet-class>com.telegenda.presentation.CalendarAppEngineSample</servlet-class>
   </servlet>
-
-  <servlet-mapping>
-    <servlet-name>calendarServiceServlet</servlet-name>
-    <url-pattern>/calendar/calendarService</url-pattern>
-  </servlet-mapping>
 
   <servlet-mapping>
     <servlet-name>sample</servlet-name>

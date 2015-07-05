@@ -1,13 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry including="**/*.java" kind="src" path="src/main/java"/>
-	<classpathentry excluding="**/*.java" kind="src" path="src/main/resources"/>
+	<classpathentry kind="src" output="target/war/WEB-INF/classes" path="src/main/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry excluding="**" kind="src" output="target/war/WEB-INF/classes" path="src/main/resources">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="var" path="M2_REPO/javax/jdo/jdo2-api/2.3-eb/jdo2-api-2.3-eb.jar" sourcepath="M2_REPO/javax/jdo/jdo2-api/2.3-eb/jdo2-api-2.3-eb-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/transaction/transaction-api/1.1/transaction-api-1.1.jar" sourcepath="M2_REPO/javax/transaction/transaction-api/1.1/transaction-api-1.1-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5.jar" sourcepath="M2_REPO/javax/servlet/servlet-api/2.5/servlet-api-2.5-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA.jar" sourcepath="M2_REPO/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/javax/validation/validation-api/1.0.0.GA/validation-api-1.0.0.GA-sources.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="var" path="M2_REPO/com/google/appengine/appengine-api-1.0-sdk/1.8.3/appengine-api-1.0-sdk-1.8.3.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/google/apis/google-api-services-calendar/v3-rev87-1.19.0/google-api-services-calendar-v3-rev87-1.19.0.jar" sourcepath="M2_REPO/com/google/apis/google-api-services-calendar/v3-rev87-1.19.0/google-api-services-calendar-v3-rev87-1.19.0-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/google/api-client/google-api-client/1.19.0/google-api-client-1.19.0.jar" sourcepath="M2_REPO/com/google/api-client/google-api-client/1.19.0/google-api-client-1.19.0-sources.jar"/>
@@ -31,6 +44,17 @@
 	<classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-user/2.4.0/gwt-user-2.4.0.jar" sourcepath="M2_REPO/com/google/gwt/gwt-user/2.4.0/gwt-user-2.4.0-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/com/google/gwt/gwt-servlet/2.4.0/gwt-servlet-2.4.0.jar" sourcepath="M2_REPO/com/google/gwt/gwt-servlet/2.4.0/gwt-servlet-2.4.0-sources.jar"/>
 	<classpathentry kind="var" path="M2_REPO/net/sf/jsr107cache/jsr107cache/1.1/jsr107cache-1.1.jar" sourcepath="M2_REPO/net/sf/jsr107cache/jsr107cache/1.1/jsr107cache-1.1-sources.jar"/>
-	<classpathentry kind="lib" path="/Telegenda/.google_apis/calendar-v3r129lv1.18.0-rc/calendar/libs/gson-2.1.jar" rootpath="/" sourcepath="/Telegenda/.google_apis/calendar-v3r129lv1.18.0-rc/calendar/libs-sources/gson-2.1-sources.jar"/>
+	<classpathentry kind="lib" path=".google_apis/calendar-v3r129lv1.18.0-rc/calendar/libs/gson-2.1.jar" rootpath="/" sourcepath=".google_apis/calendar-v3r129lv1.18.0-rc/calendar/libs-sources/gson-2.1-sources.jar"/>
+	<classpathentry kind="src" output="target/test-classes" path="src/test/java">
+		<attributes>
+			<attribute name="optional" value="true"/>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.m2e.MAVEN2_CLASSPATH_CONTAINER">
+		<attributes>
+			<attribute name="maven.pomderived" value="true"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="output" path="target/war/WEB-INF/classes"/>
 </classpath>
