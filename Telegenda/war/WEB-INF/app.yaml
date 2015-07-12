@@ -1,0 +1,35 @@
+application : telegenda-webservice
+runtime : java
+threadsafe : true
+version : 1
+handlers:
+- url: /oauth2callback/*
+  servlet: com.telegenda.presentation.OAuth2Callback
+  name: OAuth2Callback
+  login: required
+- url: /
+  servlet: com.telegenda.presentation.CalendarAppEngineSample
+  name: CalendarAppEngineSample
+  login: required
+- url: /index.html
+  filter: com.telegenda.presentation.AuthFilter
+  name: AuthFilter
+  login: required
+- url: /LogoutUrl
+  servlet: com.telegenda.presentation.LogoutUrlServlet
+  name: LogoutUrlServlet
+  login: required
+- url: /CalendarList
+  servlet: com.telegenda.presentation.CalendarListServlet
+  name: CalendarListServlet
+  login: required
+- url: /Listings
+  servlet: com.telegenda.presentation.ListingsServlet
+  name: ListingsServlet
+  login: required
+- url: /Username
+  servlet: com.telegenda.presentation.UsernameServlet
+  name: UsernameServlet
+  login: required      
+welcome_files:
+  - index.html

@@ -53,8 +53,7 @@ public class CalendarAppEngineSample extends AbstractAppEngineAuthorizationCodeS
   private static final TimeZone EST = TimeZone.getTimeZone("America/New_York");
 
   @Override
-  protected void doGet(HttpServletRequest request, HttpServletResponse response)
-      throws IOException {
+  protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("text/html");
     response.setCharacterEncoding("UTF-8");
     PrintWriter writer = response.getWriter();
