@@ -16,7 +16,10 @@ public class ListingsServlet extends HttpServlet
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException 
 	{
-		response.getWriter().println(new Gson().toJson(new TvGuideDao().getListings("Family Feud")));
+		if(!request.getParameterMap().containsKey("keyword"))
+			//response.getWriter().println("No keyword provided");
+			response.getWriter().println(new Gson().toJson(new TvGuideDao().getListings("Family Feud")));
+		else
+			response.getWriter().println(new Gson().toJson(new TvGuideDao().getListings(request.getParameter("keyword"))));
 	}
-
 }

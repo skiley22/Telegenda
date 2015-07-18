@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en" ng-app="telegendaApp" ng-controller="ListingsCtrl">
+<head>
+  <meta charset="utf-8">
+  <title>Telegenda</title>
+  <link rel="stylesheet" href="www/css/bootstrap.min.css">
+  <script src="www/js/jquery-1.11.min.js"></script>
+  <script src="www/js/angular.min.js"></script>
+  <script src="www/js/angular-route.min.js"></script>
+  <script src="www/js/app.js"></script>
+  <script src="www/js/controller.js"></script>
+  <script src="www/js/script.js"></script>
+</head>
+<body>
+
+	<select 	ng-model="selectedCalendar"
+					ng-options="calendar.id as calendar.summary for calendar in calendars"
+	>
+	  
+	</select>
+
+	<input type="text" name="keyword" id="keywordInput" ng-model="keyword"></input><button type="button" ng-click="findListings()">Search</button>
+	
+	<table>
+		<tr ng-repeat="listing in listings">
+			<td>{{listing.title}}</td>
+			<!-- <td>{{listing.copyText}}</td> -->
+			<td>{{listing.episodeTitle}}</td>
+			<td>{{listing.channel}}</td>
+			<td>{{listing.startTime}}</td>
+			<td>{{listing.endTime}}</td>
+		</tr>
+	</table>
+</body>
+</html>

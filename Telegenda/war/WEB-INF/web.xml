@@ -5,10 +5,6 @@
     <servlet-class>com.telegenda.presentation.OAuth2Callback</servlet-class>
   </servlet>
   <servlet>
-    <servlet-name>CalendarAppEngineSample</servlet-name>
-    <servlet-class>com.telegenda.presentation.CalendarAppEngineSample</servlet-class>
-  </servlet>
-  <servlet>
     <servlet-name>LogoutUrlServlet</servlet-name>
     <servlet-class>com.telegenda.presentation.LogoutUrlServlet</servlet-class>
   </servlet>
@@ -41,27 +37,14 @@
       <role-name>*</role-name>
     </auth-constraint>
   </security-constraint>
-  <servlet-mapping>
-    <servlet-name>CalendarAppEngineSample</servlet-name>
-    <url-pattern>/</url-pattern>
-  </servlet-mapping>
-  <security-constraint>
-    <web-resource-collection>
-      <web-resource-name>aname</web-resource-name>
-      <url-pattern>/</url-pattern>
-    </web-resource-collection>
-    <auth-constraint>
-      <role-name>*</role-name>
-    </auth-constraint>
-  </security-constraint>
   <filter-mapping>
     <filter-name>AuthFilter</filter-name>
-    <url-pattern>/index.html</url-pattern>
+    <url-pattern>/</url-pattern>
   </filter-mapping>
   <security-constraint>
     <web-resource-collection>
       <web-resource-name>aname</web-resource-name>
-      <url-pattern>/index.html</url-pattern>
+      <url-pattern>/</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>*</role-name>
@@ -120,6 +103,6 @@
     </auth-constraint>
   </security-constraint>
   <welcome-file-list>
-    <welcome-file>index.html</welcome-file>
+    <welcome-file>www/index.html</welcome-file>
   </welcome-file-list>
 </web-app>

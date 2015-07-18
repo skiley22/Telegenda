@@ -8,10 +8,6 @@ handlers:
   name: OAuth2Callback
   login: required
 - url: /
-  servlet: com.telegenda.presentation.CalendarAppEngineSample
-  name: CalendarAppEngineSample
-  login: required
-- url: /index.html
   filter: com.telegenda.presentation.AuthFilter
   name: AuthFilter
   login: required
@@ -32,4 +28,4 @@ handlers:
   name: UsernameServlet
   login: required      
 welcome_files:
-  - index.html
+  - www/index.html

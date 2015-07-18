@@ -18,5 +18,4 @@ public class LogoutUrlServlet extends HttpServlet
 	{
 		response.getWriter().println(UserServiceFactory.getUserService().createLogoutURL("www.google.com"/*Should be a goodbye page*/));
 	}
-
 }
