@@ -6,6 +6,7 @@ angular.module('telegendaControllers', []).controller('ListingsCtrl', ['$scope',
 			$http.get("http://telegenda-webservice.appspot.com/CalendarList").success(function(data) 
 			{
 				$scope.calendars = data;
+				$scope.selectedCalendar = $scope.calendars[0];
 			});
 		
 		
@@ -20,6 +21,9 @@ angular.module('telegendaControllers', []).controller('ListingsCtrl', ['$scope',
 			});
     
 		};
-  
 		
+		$scope.addToCalendar = function(listing)
+		{
+			submitEvent($scope.selectedCalendar.id, angular.toJson(listing))
+		}
 }]);

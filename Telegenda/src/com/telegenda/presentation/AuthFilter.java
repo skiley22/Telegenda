@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 
 public class AuthFilter implements Filter 
 {
-
 	@Override
 	public void destroy() {return;}
 
@@ -27,5 +26,4 @@ public class AuthFilter implements Filter
 
 	@Override
 	public void init(FilterConfig config) throws ServletException {return;}
-
 }

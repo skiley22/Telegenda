@@ -20,6 +20,10 @@
     <servlet-name>UsernameServlet</servlet-name>
     <servlet-class>com.telegenda.presentation.UsernameServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>EventServlet</servlet-name>
+    <servlet-class>com.telegenda.presentation.EventServlet</servlet-class>
+  </servlet>
   <filter>
     <filter-name>AuthFilter</filter-name>
     <filter-class>com.telegenda.presentation.AuthFilter</filter-class>
@@ -97,6 +101,19 @@
     <web-resource-collection>
       <web-resource-name>aname</web-resource-name>
       <url-pattern>/Username</url-pattern>
+    </web-resource-collection>
+    <auth-constraint>
+      <role-name>*</role-name>
+    </auth-constraint>
+  </security-constraint>
+  <servlet-mapping>
+    <servlet-name>EventServlet</servlet-name>
+    <url-pattern>/Event</url-pattern>
+  </servlet-mapping>
+  <security-constraint>
+    <web-resource-collection>
+      <web-resource-name>aname</web-resource-name>
+      <url-pattern>/Event</url-pattern>
     </web-resource-collection>
     <auth-constraint>
       <role-name>*</role-name>

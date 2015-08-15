@@ -26,6 +26,10 @@ handlers:
 - url: /Username
   servlet: com.telegenda.presentation.UsernameServlet
   name: UsernameServlet
-  login: required      
+  login: required
+- url: /Event
+  servlet: com.telegenda.presentation.EventServlet
+  name: EventServlet
+  login: required    
 welcome_files:
   - www/index.html

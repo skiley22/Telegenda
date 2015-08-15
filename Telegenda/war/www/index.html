@@ -12,11 +12,8 @@
   <script src="www/js/script.js"></script>
 </head>
 <body>
-
 	<select 	ng-model="selectedCalendar"
-					ng-options="calendar.id as calendar.summary for calendar in calendars"
-	>
-	  
+					ng-options="calendar.id as calendar.summary for calendar in calendars track by calendar.id">
 	</select>
 
 	<input type="text" name="keyword" id="keywordInput" ng-model="keyword"></input><button type="button" ng-click="findListings()">Search</button>
@@ -27,8 +24,9 @@
 			<!-- <td>{{listing.copyText}}</td> -->
 			<td>{{listing.episodeTitle}}</td>
 			<td>{{listing.channel}}</td>
-			<td>{{listing.startTime}}</td>
-			<td>{{listing.endTime}}</td>
+			<td>{{listing.startTime | date:'medium'}}</td>
+			<!-- <td>{{listing.endTime}}</td> -->
+			<td><button ng-click="addToCalendar(listing)">Add to calendar</button></td>			
 		</tr>
 	</table>
 </body>

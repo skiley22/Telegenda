@@ -1,8 +1,6 @@
 package com.telegenda.business;
 
-import java.util.Date;
-
-public class Program implements Comparable<Program>{
+public class Listing {
 	
 	//search: copyText, episodeTitle, title
 	
@@ -10,17 +8,27 @@ public class Program implements Comparable<Program>{
 	private String copyText; // (description)
 	private String episodeTitle; //ProgramSchedule / EpisodeTitle
 	private String channel; //Channels / Name
-	private Date startTime; //"" /startTime (long)
-	private Date endTime; //"" / endTime (long)
+	private long startTime; //"" /startTime (long)
+	private long endTime; //"" / endTime (long)
 	
-	public Program(String title, String copyText, String episodeTitle, String channel, long startTime, long endTime) 
+	public Listing()
+	{
+		title = "";
+		copyText = "";
+		episodeTitle = "";
+		channel = "";
+		startTime = 0;
+		endTime = 0;
+	}
+	
+	public Listing(String title, String copyText, String episodeTitle, String channel, long startTime, long endTime) 
 	{
 		this.title = title;
 		this.copyText = copyText;
 		this.episodeTitle = episodeTitle;
 		this.channel = channel;
-		this.startTime = new Date(startTime*1000);
-		this.endTime = new Date(endTime*1000);
+		this.startTime = startTime*1000;
+		this.endTime = endTime*1000;
 	}
 
 	public String getTitle() {
@@ -47,19 +55,19 @@ public class Program implements Comparable<Program>{
 		this.channel = channel;
 	}
 
-	public Date getStartTime() {
+	public long getStartTime() {
 		return startTime;
 	}
 
-	public void setStartTime(Date startTime) {
+	public void setStartTime(long startTime) {
 		this.startTime = startTime;
 	}
 
-	public Date getEndTime() {
+	public long getEndTime() {
 		return endTime;
 	}
 
-	public void setEndTime(Date endTime) {
+	public void setEndTime(long endTime) {
 		this.endTime = endTime;
 	}
 
@@ -72,13 +80,7 @@ public class Program implements Comparable<Program>{
 	}
 
 	@Override
-	public int compareTo(Program compareProgram) {
-		return (int) (this.startTime.getTime() - compareProgram.getStartTime().getTime());
-	}
-
-	@Override
 	public String toString() {
 		return title + " on " + channel + " from " + startTime + " until " + endTime;
 	}
-	
 }

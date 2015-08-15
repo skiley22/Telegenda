@@ -86,7 +86,9 @@ class Utils {
   static Calendar loadCalendarClient() throws IOException {
     String userId = UserServiceFactory.getUserService().getCurrentUser().getUserId();
     Credential credential = newFlow().loadCredential(userId);
-    return new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential).build();
+    return new Calendar.Builder(HTTP_TRANSPORT, JSON_FACTORY, credential)
+    		.setApplicationName("telegenda-webservice")
+    		.build();
   }
 
   /**

@@ -1,0 +1,10 @@
+<NotepadPlus>
+    <Session activeView="0">
+        <mainView activeIndex="2">
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="975" startPos="513" endPos="513" selMode="0" lang="HTML" encoding="-1" filename="C:\Users\Steven\workspace\Telegenda\Telegenda\war\www\index.html" backupFilePath="" originalFileLastModifTimestamp="1439611275" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="789" startPos="738" endPos="738" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Steven\workspace\Telegenda\Telegenda\war\www\js\controller.js" backupFilePath="" originalFileLastModifTimestamp="1439608716" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="421" startPos="382" endPos="382" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Steven\workspace\Telegenda\Telegenda\war\www\js\script.js" backupFilePath="" originalFileLastModifTimestamp="1439608443" />
+        </mainView>
+        <subView activeIndex="0" />
+    </Session>
+</NotepadPlus>

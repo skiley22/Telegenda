@@ -17,5 +17,4 @@ public class UsernameServlet extends HttpServlet
 	{
 		response.getWriter().println(UserServiceFactory.getUserService().getCurrentUser().getNickname());
 	}
-
 }

@@ -18,5 +18,18 @@ $(function()
 	.done(function( msg ) 
 	{		
 		$( "body" ).append( "<p>"+msg+"</p>" );
-	});						
+	});	
 });
+function submitEvent(calendar, listing)
+	{
+		$.ajax(
+		{
+			type: "POST",
+			url: "http://telegenda-webservice.appspot.com/Event",
+			data:{"calendar":calendar, "listing":listing}
+		})
+		.done(function( msg ) 
+		{		
+			alert(msg);
+		});
+	}

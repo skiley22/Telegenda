@@ -9,15 +9,14 @@ import com.google.gson.JsonDeserializer;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
-import com.telegenda.business.Program;
+import com.telegenda.business.Listing;
 
-public class SearchResultDeserializer implements JsonDeserializer<List<Program>>
+public class SearchResultDeserializer implements JsonDeserializer<List<Listing>>
 {
 	@Override
-  public ArrayList<Program> deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException 
+	public ArrayList<Listing> deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException 
 	{
-
-		ArrayList<Program> listings = new ArrayList<Program>();
+		ArrayList<Listing> listings = new ArrayList<Listing>();
 	    
 	    for(JsonElement j : json.getAsJsonArray())
 	    {
@@ -41,7 +40,7 @@ public class SearchResultDeserializer implements JsonDeserializer<List<Program>>
 	    	if(!channelObject.get("Name").isJsonNull())
 	    		channel = channelObject.get("Name").getAsString();	    	
 	    	
-	    	listings.add(new Program(title, copyText, episodeTitle, channel,
+	    	listings.add(new Listing(title, copyText, episodeTitle, channel,
 					programScheduleObject.get("StartTime").getAsLong(), 
 					programScheduleObject.get("EndTime").getAsLong()
 					));
