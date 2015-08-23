@@ -1,4 +1,14 @@
 angular.module('telegendaApp', [
 	'ngRoute',
-	'telegendaControllers'
-]);
+	'telegendaControllers',
+	'ng.httpLoader',
+	'pageFilter'
+])
+
+.config(['httpMethodInterceptorProvider',
+  function (httpMethodInterceptorProvider) {
+  httpMethodInterceptorProvider.whitelistDomain('appspot.com');
+ }
+])
+
+;

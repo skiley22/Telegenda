@@ -1,9 +1,11 @@
 <NotepadPlus>
     <Session activeView="0">
-        <mainView activeIndex="2">
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="975" startPos="513" endPos="513" selMode="0" lang="HTML" encoding="-1" filename="C:\Users\Steven\workspace\Telegenda\Telegenda\war\www\index.html" backupFilePath="" originalFileLastModifTimestamp="1439611275" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="789" startPos="738" endPos="738" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Steven\workspace\Telegenda\Telegenda\war\www\js\controller.js" backupFilePath="" originalFileLastModifTimestamp="1439608716" />
-            <File firstVisibleLine="0" xOffset="0" scrollWidth="421" startPos="382" endPos="382" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Steven\workspace\Telegenda\Telegenda\war\www\js\script.js" backupFilePath="" originalFileLastModifTimestamp="1439608443" />
+        <mainView activeIndex="0">
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="975" startPos="1913" endPos="1913" selMode="0" lang="HTML" encoding="-1" filename="C:\Users\Steven\workspace\Telegenda\Telegenda\war\www\index.html" backupFilePath="" originalFileLastModifTimestamp="1440303511" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="789" startPos="149" endPos="149" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Steven\workspace\Telegenda\Telegenda\war\www\js\controller.js" backupFilePath="" originalFileLastModifTimestamp="1440303471" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="421" startPos="410" endPos="418" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Steven\workspace\Telegenda\Telegenda\war\www\js\script.js" backupFilePath="" originalFileLastModifTimestamp="1439608443" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="382" startPos="83" endPos="83" selMode="0" lang="HTML" encoding="-1" filename="C:\Users\Steven\workspace\Telegenda\Telegenda\war\www\loader.html" backupFilePath="" originalFileLastModifTimestamp="1440300634" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="414" startPos="105" endPos="105" selMode="0" lang="Javascript" encoding="-1" filename="C:\Users\Steven\workspace\Telegenda\Telegenda\war\www\js\app.js" backupFilePath="" originalFileLastModifTimestamp="1440301461" />
         </mainView>
         <subView activeIndex="0" />
     </Session>

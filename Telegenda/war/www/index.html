@@ -10,16 +10,19 @@
   <script src="www/js/app.js"></script>
   <script src="www/js/controller.js"></script>
   <script src="www/js/script.js"></script>
+  <script src="www/js/angular-http-loader.min.js"></script>
 </head>
 <body>
 	<select 	ng-model="selectedCalendar"
 					ng-options="calendar.id as calendar.summary for calendar in calendars track by calendar.id">
 	</select>
 
-	<input type="text" name="keyword" id="keywordInput" ng-model="keyword"></input><button type="button" ng-click="findListings()">Search</button>
+	<input type="text" name="keyword" id="keywordInput" ng-model="keyword"></input>
+	<button type="button" ng-click="findListings()">Search</button>
+	<button type="button" ng-click="createOrder()">Save Keyword</button>
 	
 	<table>
-		<tr ng-repeat="listing in listings">
+		<tr ng-repeat="listing in listings | startFrom:currentPage*pageSize | limitTo:pageSize">
 			<td>{{listing.title}}</td>
 			<!-- <td>{{listing.copyText}}</td> -->
 			<td>{{listing.episodeTitle}}</td>
@@ -29,5 +32,15 @@
 			<td><button ng-click="addToCalendar(listing)">Add to calendar</button></td>			
 		</tr>
 	</table>
+	<!-- <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"> -->
+	<button ng-disabled="listings.length == 0 || currentPage == 0" ng-click="currentPage=currentPage-1">
+        Previous
+    </button>
+    {{currentPage+1}}/{{numberOfPages()}}
+    <button ng-disabled="listings.length < 10 || (currentPage >= listings.length/pageSize - 1)" ng-click="currentPage=currentPage+1">
+        Next
+    </button>
+	
+	<div ng-http-loader methods="GET" title="Telegenda" template="www/loader.html"></div>
 </body>
 </html>
