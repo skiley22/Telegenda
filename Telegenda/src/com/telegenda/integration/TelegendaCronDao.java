@@ -2,42 +2,72 @@ package com.telegenda.integration;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-import com.google.appengine.api.utils.SystemProperty;
+import com.telegenda.business.Order;
 
 public class TelegendaCronDao 
 {
-	public Connection getConnection() throws SQLException
+	private static Connection getConnection() throws SQLException
 	{
 		String url = "";
-		try {
-		      if (SystemProperty.environment.value() ==
-		          SystemProperty.Environment.Value.Production) {
-		        // Load the class that provides the new "jdbc:google:mysql://" prefix.
-		        Class.forName("com.mysql.jdbc.GoogleDriver");
-		        url = "jdbc:google:mysql://your-project-id:your-instance-name/guestbook?user=root";
-		      } else {
-		        // Local MySQL instance to use during development.
-		        Class.forName("com.mysql.jdbc.Driver");
-		        url = "jdbc:mysql://127.0.0.1:3306/guestbook?user=root";
-
-		        // Alternatively, connect to a Google Cloud SQL instance using:
-		        // jdbc:mysql://ip-address-of-google-cloud-sql-instance:3306/guestbook?user=root
-		      }
-		    } catch (Exception e) {
+		try 
+		{
+			Class.forName("com.mysql.jdbc.GoogleDriver");
+			url = "jdbc:google:mysql://telegenda-webservice:crons/telegenda?user=root";
+		} 
+		catch (Exception e)
+		{
 		      e.printStackTrace();
-		    }		
+		}		
 		
 		return DriverManager.getConnection(url);
 	}	
 	
-	public void createCron() throws SQLException
-	{}
-	public void getAllCrons() throws SQLException
-	{}
-	public void deleteCron() throws SQLException
-	{}
-	public void updateCron() throws SQLException
-	{}
+	public static int createCron(Order o) throws SQLException
+	{
+		PreparedStatement ps = getConnection().prepareStatement("INSERT INTO orders (calendarId, keyword) VALUES (?,?);");
+		ps.setString(1, o.getCalendarId());
+		ps.setString(2, o.getKeyword());
+		
+		return ps.executeUpdate();
+	}
+	public static List<Order> getAllCrons() throws SQLException
+	{
+		PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM orders");
+
+		ResultSet rs = ps.executeQuery();
+		ArrayList<Order> orders = new ArrayList<Order>();
+		
+		while (rs.next() == true)
+			orders.add(new Order(rs.getInt("orderId"),rs.getString("calendarId"),rs.getString("keyword")));
+
+		return orders;
+	}
+	/*public static Order getAllCrons(String userId) throws SQLException
+	{
+		PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM orders WHERE calendarId = '?'");
+		ps.setInt(0, o.getOrderId());
+		
+		return ps.executeUpdate();
+	}*/
+	public static int deleteCron(Order o) throws SQLException
+	{
+		PreparedStatement ps = getConnection().prepareStatement("DELETE FROM orders WHERE orderId = ?");
+		ps.setInt(1, o.getOrderId());
+		
+		return ps.executeUpdate();
+	}
+	/*public static int updateCron(Order o) throws SQLException
+	{
+		PreparedStatement ps = getConnection().prepareStatement("UPDATE orders SET keyword = '?' WHERE ");
+		ps.setString(0, o.getCalendarId());
+		ps.setString(1, o.getKeyword());
+		
+		return ps.executeUpdate();
+	}*/
 }

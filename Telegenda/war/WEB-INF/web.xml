@@ -24,6 +24,10 @@
     <servlet-name>EventServlet</servlet-name>
     <servlet-class>com.telegenda.presentation.EventServlet</servlet-class>
   </servlet>
+  <servlet>
+    <servlet-name>CalendarCron</servlet-name>
+    <servlet-class>com.telegenda.presentation.CalendarCronServlet</servlet-class>
+  </servlet>
   <filter>
     <filter-name>AuthFilter</filter-name>
     <filter-class>com.telegenda.presentation.AuthFilter</filter-class>
@@ -119,6 +123,10 @@
       <role-name>*</role-name>
     </auth-constraint>
   </security-constraint>
+  <servlet-mapping>
+    <servlet-name>CalendarCron</servlet-name>
+    <url-pattern>/CalendarCron</url-pattern>
+  </servlet-mapping>
   <welcome-file-list>
     <welcome-file>www/index.html</welcome-file>
   </welcome-file-list>

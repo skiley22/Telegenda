@@ -19,6 +19,6 @@ public class ListingsServlet extends HttpServlet
 		if(!request.getParameterMap().containsKey("keyword"))
 			response.getWriter().println("No keyword provided");
 		else
-			response.getWriter().println(new Gson().toJson(new TvGuideDao().getListings(request.getParameter("keyword").toLowerCase())));
+			response.getWriter().println(new Gson().toJson(TvGuideDao.getListings(request.getParameter("keyword").toLowerCase())));
 	}
 }

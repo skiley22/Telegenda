@@ -1,0 +1,31 @@
+#container
+{
+	width:1000px;
+}
+
+#pagination
+{
+	text-align:center;
+}
+
+label, input, select {
+    display: inline-block;
+    vertical-align: baseline;
+    width: 200px;
+}
+#listings
+{
+	text-align:center;
+	width:750px;
+	height:275px;
+	display: inline-block;
+}
+#searchSomething
+{
+  display: inline-block;
+  vertical-align: middle;
+}
+#inputs
+{
+	width:450px;
+}

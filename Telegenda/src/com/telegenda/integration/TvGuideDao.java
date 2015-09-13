@@ -21,7 +21,7 @@ import org.apache.commons.io.IOUtils;
  */
 public class TvGuideDao 
 {
-  public ArrayList<Listing> getListings(String keyword) throws IOException
+  public static ArrayList<Listing> getListings(String keyword) throws IOException
   {
 	//curent time in millis
     long d = Calendar.getInstance().getTime().getTime() / 1000; 

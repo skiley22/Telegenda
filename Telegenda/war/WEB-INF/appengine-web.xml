@@ -12,4 +12,5 @@
   <code-lock>false</code-lock>
   <sessions-enabled>false</sessions-enabled>
   <warmup-requests-enabled>false</warmup-requests-enabled>
+  <use-google-connector-j>true</use-google-connector-j>
 </appengine-web-app>

@@ -30,6 +30,9 @@ handlers:
 - url: /Event
   servlet: com.telegenda.presentation.EventServlet
   name: EventServlet
-  login: required    
+  login: required  
+- url: /CalendarCron
+  servlet: com.telegenda.presentation.CalendarCronServlet
+  name: CalendarCron  
 welcome_files:
   - www/index.html

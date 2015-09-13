@@ -5,6 +5,8 @@ angular.module('telegendaControllers', []).controller('ListingsCtrl', ['$scope',
 		$scope.listings = [];		
 		$scope.currentPage = 0;
 		$scope.pageSize = 10;
+		$scope.showSaveButton = false;
+		$scope.nothingSearched = true;
 		
 		$http.get("http://telegenda-webservice.appspot.com/CalendarList").success(function(data) 
 		{
@@ -23,11 +25,19 @@ angular.module('telegendaControllers', []).controller('ListingsCtrl', ['$scope',
 			{
 				return Math.ceil($scope.listings.length/$scope.pageSize);                
 			}
+			
+			$scope.showSaveButton = true;
+			$scope.nothingSearched = false;
 		};
 		
 		$scope.addToCalendar = function(listing)
 		{		
 			submitEvent($scope.selectedCalendar, angular.toJson(listing));
+		}
+		
+		$scope.createOrder = function(calendarId, keyword)
+		{
+			createOrder($scope.selectedCalendar, $scope.keyword);
 		}
 }]);
 
