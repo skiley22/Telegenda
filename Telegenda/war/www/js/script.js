@@ -46,3 +46,15 @@ function createOrder(calendarId, keyword)
 		alert(msg);
 	});
 }
+function runNow()
+{
+	$.ajax(
+	{
+		type: "GET",
+		url: "http://telegenda-webservice.appspot.com/CalendarCron",
+	})
+	.done(function( msg ) 
+	{		
+		alert(msg);
+	});
+}

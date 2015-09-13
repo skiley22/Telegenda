@@ -32,12 +32,16 @@ angular.module('telegendaControllers', []).controller('ListingsCtrl', ['$scope',
 		
 		$scope.addToCalendar = function(listing)
 		{		
-			submitEvent($scope.selectedCalendar, angular.toJson(listing));
+			submitEvent($scope.selectedCalendar.id, angular.toJson(listing));
 		}
 		
 		$scope.createOrder = function(calendarId, keyword)
 		{
-			createOrder($scope.selectedCalendar, $scope.keyword);
+			createOrder($scope.selectedCalendar.id, $scope.keyword);
+		}
+		$scope.runNow = function(calendarId, keyword)
+		{
+			runNow();
 		}
 }]);
 

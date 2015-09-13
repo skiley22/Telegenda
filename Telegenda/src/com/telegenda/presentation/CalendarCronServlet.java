@@ -53,14 +53,18 @@ public class CalendarCronServlet extends HttpServlet
 				
 			GoogleCalendar gc = new GoogleCalendar(service);
 			
+			int count = 0;
+			
 			for(Order o : TelegendaCronDao.getAllCrons())
 			{
 				for(Listing l : TvGuideDao.getListings(o.getKeyword()))
 				{
-					output.append(o.toString() +  " - " + l.toString());
 					gc.createEvent(o.getCalendarId(), l);
+					count++;
 				}
 			}
+			
+			output.append("Events added: " + count);
 		}
 		catch(Exception e)
 		{
