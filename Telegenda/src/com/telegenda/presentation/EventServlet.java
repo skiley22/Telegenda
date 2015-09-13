@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.api.services.calendar.Calendar;
 import com.google.gson.Gson;
 import com.telegenda.business.Listing;
 import com.telegenda.integration.GoogleCalendar;
@@ -31,7 +32,9 @@ public class EventServlet extends HttpServlet
 			
 			Listing listing = new Gson().fromJson(listingString, Listing.class);
 			
-			String success = new GoogleCalendar(Utils.loadCalendarClient()).createEvent(calendar, listing);
+			Calendar service = Utils.loadCalendarClient();
+			
+			String success = GoogleCalendar.createEvent(service, calendar, listing);
 			
 			response.getWriter().println(success);
 		}

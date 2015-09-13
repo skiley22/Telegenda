@@ -51,20 +51,13 @@ public class CalendarCronServlet extends HttpServlet
 			Calendar service = new Calendar.Builder(httpTransport, JSON_FACTORY,
 					credential).setApplicationName("telegenda-webservice").build();
 				
-			GoogleCalendar gc = new GoogleCalendar(service);
-			
-			int count = 0;
-			
 			for(Order o : TelegendaCronDao.getAllCrons())
-			{
 				for(Listing l : TvGuideDao.getListings(o.getKeyword()))
-				{
-					gc.createEvent(o.getCalendarId(), l);
-					count++;
-				}
-			}
-			
-			output.append("Events added: " + count);
+					GoogleCalendar.createEvent(service, o.getCalendarId(), l);
+					
+					//output.append(GoogleCalendar.createEvent(service, o.getCalendarId(), l) + "\n");
+//			if(output.toString().isEmpty())
+//				output.append("No new events added");
 		}
 		catch(Exception e)
 		{
@@ -106,7 +99,10 @@ public class CalendarCronServlet extends HttpServlet
 			int result = TelegendaCronDao.createCron(new Order(calendarId, keyword));	
 			
 			if(result > 0)
-				output.append("Successfully saved keyword");
+			{
+				doGet(null, response);
+				output.append("Successfully saved keyword - check your calendar for new shows!");
+			}
 			else
 				throw new Exception("Keyword not saved"); 
 			

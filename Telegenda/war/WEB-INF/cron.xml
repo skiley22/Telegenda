@@ -3,7 +3,7 @@
   <cron>
     <url>/CalendarCron</url>
     <description>Pulls saved orders from SQL and inserts new shows into db</description>
-    <schedule>every 336 hours</schedule>
+    <schedule>every sunday 00:00</schedule>
     <timezone>America/New_York</timezone>
   </cron>
 </cronentries>

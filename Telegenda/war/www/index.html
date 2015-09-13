@@ -19,17 +19,16 @@
 		<div id="inputs">
 			<label for="calendarList">Available Calendars</label>
 			<select id="calendarList" ng-model="selectedCalendar"
-							ng-options="calendar.id as calendar.summary for calendar in calendars track by calendar.id">
+							ng-options="calendar.summary for calendar in calendars">
 			</select>
 			<button type="button" ng-enable="showSaveButton" ng-click="createOrder()">Save Keyword</button>
 			<br />
 			<label for="keywordInput">Keyword</label>
 			<input type="text" name="keyword" id="keywordInput" ng-model="keyword"></input>
 			<button type="button" ng-click="findListings()">Search</button>
-			<br />
-			<button type="button" ng-click="runNow()">Run Now</button>
 		</div>
 		<div id="listings">
+			<div ng-http-loader methods="['POST', 'GET']" title="Telegenda" template="www/loader.html"></div>
 			<p id="searchSomething" ng-show="nothingSearched">
 				Search for your favorite show!
 			</p>
@@ -55,8 +54,6 @@
 				Next
 			</button>
 		</div>
-		
-		<div ng-http-loader methods="GET" title="Telegenda" template="www/loader.html"></div>
 	</div>
 </body>
 </html>

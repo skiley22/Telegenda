@@ -81,6 +81,7 @@ public class Listing {
 
 	@Override
 	public String toString() {
-		return title + " on " + channel + " from " + startTime + " until " + endTime;
+		return String.format("%s - %s\n%s \nWatch it on %s", 
+				title, copyText, episodeTitle, channel);
 	}
 }
