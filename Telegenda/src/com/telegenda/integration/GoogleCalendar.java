@@ -2,10 +2,12 @@ package com.telegenda.integration;
 
 import java.io.IOException;
 import java.security.GeneralSecurityException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.google.api.client.util.DateTime;
 import com.google.api.services.calendar.Calendar;
+import com.google.api.services.calendar.model.CalendarListEntry;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.Events;
@@ -14,6 +16,16 @@ import com.telegenda.business.Listing;
 public class GoogleCalendar 
 {
 	private static final String EST = "America/New_York";
+	
+	public static List<String> getCalendarIdList(Calendar service) throws IOException
+	{
+		ArrayList<String> calendars = new ArrayList<String>();
+		
+		for(CalendarListEntry cle : service.calendarList().list().execute().getItems())
+			calendars.add(cle.getId());
+			
+		return calendars;
+	}
 	
 	public static String createEvent(Calendar service, String calendarId, Listing listing) throws GeneralSecurityException, IOException
 	{

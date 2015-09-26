@@ -54,6 +54,20 @@
 				Next
 			</button>
 		</div>
+		<div id="manageKeywords">
+			<label for="keywordList">Saved Keywords</label>
+			<select id="keywordList" ng-model="selectedKeyword"
+							ng-options="keyword.keywordName for keyword in keywords">
+			</select>
+			<button type="button" ng-click="deleteKeyword()">Delete Keyword</button>
+		</div>
+<!-- 		<div id="blacklist">
+			<label for="blacklist">Blacklist</label>
+			<select id="blacklist" ng-model="selectedBlacklistKeyword"
+							ng-options="calendar.summary for calendar in calendars">
+			</select>
+			<button type="button" ng-click="deleteBlacklistKeyword()">Delete Blacklist Keyword</button>
+		</div> -->
 	</div>
 </body>
 </html>

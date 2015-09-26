@@ -1,5 +1,6 @@
 package com.telegenda.integration;
 
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,7 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.telegenda.business.Order;
+import com.google.api.services.calendar.Calendar;
+import com.telegenda.business.SavedKeyword;
 
 public class TelegendaCronDao 
 {
@@ -28,46 +30,57 @@ public class TelegendaCronDao
 		return DriverManager.getConnection(url);
 	}	
 	
-	public static int createCron(Order o) throws SQLException
+	public static int createCron(SavedKeyword o) throws SQLException
 	{
-		PreparedStatement ps = getConnection().prepareStatement("INSERT INTO orders (calendarId, keyword) VALUES (?,?);");
+		PreparedStatement ps = getConnection().prepareStatement("INSERT INTO Keywords (calendarId, keywordName) VALUES (?,?);");
 		ps.setString(1, o.getCalendarId());
-		ps.setString(2, o.getKeyword());
+		ps.setString(2, o.getKeywordName());
 		
 		return ps.executeUpdate();
 	}
-	public static List<Order> getAllCrons() throws SQLException
+	public static List<SavedKeyword> getCrons(Calendar service) throws SQLException, IOException
 	{
-		PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM orders");
+		List<String> calendars = GoogleCalendar.getCalendarIdList(service);
+		StringBuilder sb = new StringBuilder();
+		
+		sb.append(" WHERE calendarId IN (");
+		
+		for(int i = 0; i < calendars.size(); i++)
+		{
+			sb.append("'" + calendars.get(i) + "'");
+			if(i != calendars.size()-1)
+				sb.append(",");	
+		}
+		
+		sb.append(")");
+		
+		PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM Keywords" + sb.toString());
 
 		ResultSet rs = ps.executeQuery();
-		ArrayList<Order> orders = new ArrayList<Order>();
+		ArrayList<SavedKeyword> orders = new ArrayList<SavedKeyword>();
 		
 		while (rs.next() == true)
-			orders.add(new Order(rs.getInt("orderId"),rs.getString("calendarId"),rs.getString("keyword")));
+			orders.add(new SavedKeyword(rs.getInt("keywordId"),rs.getString("calendarId"),rs.getString("keywordName")));
 
 		return orders;
 	}
-	/*public static Order getAllCrons(String userId) throws SQLException
+	public static List<SavedKeyword> getCrons() throws SQLException, IOException
 	{
-		PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM orders WHERE calendarId = '?'");
-		ps.setInt(0, o.getOrderId());
+		PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM Keywords");
+
+		ResultSet rs = ps.executeQuery();
+		ArrayList<SavedKeyword> orders = new ArrayList<SavedKeyword>();
 		
-		return ps.executeUpdate();
-	}*/
-	public static int deleteCron(Order o) throws SQLException
+		while (rs.next() == true)
+			orders.add(new SavedKeyword(rs.getInt("keywordId"),rs.getString("calendarId"),rs.getString("keywordName")));
+
+		return orders;
+	}
+	public static int deleteCron(int keywordId) throws SQLException
 	{
-		PreparedStatement ps = getConnection().prepareStatement("DELETE FROM orders WHERE orderId = ?");
-		ps.setInt(1, o.getOrderId());
+		PreparedStatement ps = getConnection().prepareStatement("DELETE FROM Keywords WHERE keywordId = ?");
+		ps.setInt(1, keywordId);
 		
 		return ps.executeUpdate();
 	}
-	/*public static int updateCron(Order o) throws SQLException
-	{
-		PreparedStatement ps = getConnection().prepareStatement("UPDATE orders SET keyword = '?' WHERE ");
-		ps.setString(0, o.getCalendarId());
-		ps.setString(1, o.getKeyword());
-		
-		return ps.executeUpdate();
-	}*/
 }

@@ -2,12 +2,19 @@ angular.module('telegendaControllers', []).controller('ListingsCtrl', ['$scope',
 	function ($scope, $http) {
 		
 		$scope.calendars = [];
-		$scope.listings = [];		
+		$scope.listings = [];
+		$scope.keywords = [];
 		$scope.currentPage = 0;
 		$scope.pageSize = 10;
 		$scope.showSaveButton = false;
 		$scope.nothingSearched = true;
 		
+		$http.get("http://telegenda-webservice.appspot.com/SavedKeywords").success(function(data) 
+		{
+			$scope.keywords = data;
+			$scope.selectedKeyword = $scope.keywords[0];
+		});
+
 		$http.get("http://telegenda-webservice.appspot.com/CalendarList").success(function(data) 
 		{
 			$scope.calendars = data;
@@ -33,16 +40,20 @@ angular.module('telegendaControllers', []).controller('ListingsCtrl', ['$scope',
 		$scope.addToCalendar = function(listing)
 		{		
 			submitEvent($scope.selectedCalendar.id, angular.toJson(listing));
-		}
+		};
 		
 		$scope.createOrder = function(calendarId, keyword)
 		{
 			createOrder($scope.selectedCalendar.id, $scope.keyword);
-		}
+		};
 		$scope.runNow = function(calendarId, keyword)
 		{
 			runNow();
-		}
+		};
+		$scope.deleteKeyword = function()
+		{
+			deleteKeyword($scope.selectedKeyword);
+		};
 }]);
 
 angular.module('pageFilter', []).filter('startFrom', function() 

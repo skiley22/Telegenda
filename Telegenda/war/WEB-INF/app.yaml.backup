@@ -33,6 +33,8 @@ handlers:
   login: required  
 - url: /CalendarCron
   servlet: com.telegenda.presentation.CalendarCronServlet
-  name: CalendarCron  
+  name: CalendarCron 
+- url: /SavedKeywords
+  servlet: com.telegenda.presentation.SavedKeywordServlet 
 welcome_files:
   - www/index.html

@@ -4,11 +4,8 @@ angular.module('telegendaApp', [
 	'ng.httpLoader',
 	'pageFilter'
 ])
-
 .config(['httpMethodInterceptorProvider',
   function (httpMethodInterceptorProvider) {
   httpMethodInterceptorProvider.whitelistDomain('appspot.com');
  }
-])
-
-;
+]);

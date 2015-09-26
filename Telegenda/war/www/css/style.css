@@ -2,12 +2,10 @@
 {
 	width:1000px;
 }
-
 #pagination
 {
 	text-align:center;
 }
-
 label, input, select {
     display: inline-block;
     vertical-align: baseline;
@@ -16,7 +14,7 @@ label, input, select {
 #listings
 {
 	text-align:center;
-	width:750px;
+	width:800px;
 	height:275px;
 	display: inline-block;
 }
