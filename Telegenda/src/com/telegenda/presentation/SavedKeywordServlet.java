@@ -1,6 +1,8 @@
 package com.telegenda.presentation;
 
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,6 +17,7 @@ import com.telegenda.integration.TelegendaCronDao;
 public class SavedKeywordServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 8877081988617263460L;
+	private static final Logger log = Logger.getLogger(SavedKeywordServlet.class.getName());
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException 
@@ -26,8 +29,8 @@ public class SavedKeywordServlet extends HttpServlet
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
-			response.getWriter().println(ExceptionUtils.getStackTrace(e));
+			log.log(Level.SEVERE, ExceptionUtils.getStackTrace(e));
+			response.getWriter().println("Error - please contact Steve for help");
 		}
 	}	
 	@Override
@@ -52,8 +55,8 @@ public class SavedKeywordServlet extends HttpServlet
 		}
 		catch(Exception e)
 		{
-			e.printStackTrace();
-			response.getWriter().println(ExceptionUtils.getStackTrace(e));
+			log.log(Level.SEVERE, ExceptionUtils.getStackTrace(e));
+			response.getWriter().println("Error - please contact Steve for help");
 		}
 	}	
 }

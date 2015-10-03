@@ -3,6 +3,8 @@ package com.telegenda.presentation;
 import java.io.File;
 import java.io.IOException;
 import java.util.Collections;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,7 +33,9 @@ public class CalendarCronServlet extends HttpServlet
 	private static final String SERVICE_ACCOUNT_EMAIL = "769449426385-qhu7vh5u6jif611m3gq6e4bi731c0tuv@developer.gserviceaccount.com";
 	private static final JsonFactory JSON_FACTORY = JacksonFactory.getDefaultInstance();
 	private static HttpTransport httpTransport;
+	private static final Logger log = Logger.getLogger(CalendarCronServlet.class.getName());
 	//private key: "notasecret"
+	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException 
 	{
@@ -58,6 +62,7 @@ public class CalendarCronServlet extends HttpServlet
 		catch(Exception e)
 		{
 			output.append(ExceptionUtils.getStackTrace(e));
+			log.log(Level.SEVERE, ExceptionUtils.getStackTrace(e));
 		}
 		response.getWriter().println(output);
 	}
@@ -77,6 +82,13 @@ public class CalendarCronServlet extends HttpServlet
 		try
 		{
 			Calendar service = Utils.loadCalendarClient();
+			
+			for(SavedKeyword sk : TelegendaCronDao.getCrons(service))
+				if(sk.getKeywordName().equals(keyword))
+				{
+					response.getWriter().println("You have already saved this keyword");
+					return;
+				}
 			
 			boolean hasPermission = false;
 				
