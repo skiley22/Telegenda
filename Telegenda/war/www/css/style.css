@@ -1,3 +1,28 @@
+html, body
+{
+  min-height: 100%;
+}
+body
+{
+  position: relative;
+}
+label, input, select
+{
+    display: inline-block;
+    vertical-align: baseline;
+    width: 200px;
+}
+#overlay 
+{
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    background-color:rgba(0, 0, 0, 0.85);
+    z-index:9999;
+    color:white;
+}
 #container
 {
 	width:1000px;
@@ -5,11 +30,6 @@
 #pagination
 {
 	text-align:center;
-}
-label, input, select {
-    display: inline-block;
-    vertical-align: baseline;
-    width: 200px;
 }
 #listings
 {
@@ -26,4 +46,12 @@ label, input, select {
 #inputs
 {
 	width:550px;
+}
+#loaderText
+{	
+    display: inline-block;
+    vertical-align: middle;
+    padding: 150px 200px;
+    position:relative;
+    font-weight:bold;
 }
