@@ -6,16 +6,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/gson-2.3.1.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-io-2.4.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-lang3-3.4.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/aopalliance-1.0.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-logging-1.2.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-aop-4.2.1.RELEASE.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-beans-4.2.1.RELEASE.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-context-4.2.1.RELEASE.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-context-support-4.2.1.RELEASE.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-core-4.2.1.RELEASE.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-expression-4.2.1.RELEASE.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-web-4.2.1.RELEASE.jar"/>
-	<classpathentry kind="lib" path="war/WEB-INF/lib/spring-webmvc-4.2.1.RELEASE.jar"/>
 	<classpathentry kind="con" path="com.google.gdt.eclipse.managedapis.MANAGED_API_CONTAINER/calendar-v3r143lv1.18.0-rc"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>
