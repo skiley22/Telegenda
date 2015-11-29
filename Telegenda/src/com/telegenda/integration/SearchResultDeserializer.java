@@ -16,7 +16,7 @@ public class SearchResultDeserializer implements JsonDeserializer<List<Listing>>
 	@Override
 	public ArrayList<Listing> deserialize(JsonElement json, Type type, JsonDeserializationContext context) throws JsonParseException 
 	{
-		ArrayList<Listing> listings = new ArrayList<Listing>();
+		ArrayList<Listing> listings = new ArrayList<>();
 	    
 	    for(JsonElement j : json.getAsJsonArray())
 	    {

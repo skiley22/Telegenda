@@ -3,6 +3,7 @@ package com.telegenda.integration;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.google.api.client.util.DateTime;
@@ -11,6 +12,7 @@ import com.google.api.services.calendar.model.CalendarListEntry;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.Events;
+import com.telegenda.business.Game;
 import com.telegenda.business.Listing;
 
 public class GoogleCalendar 
@@ -19,7 +21,7 @@ public class GoogleCalendar
 	
 	public static List<String> getCalendarIdList(Calendar service) throws IOException
 	{
-		ArrayList<String> calendars = new ArrayList<String>();
+		ArrayList<String> calendars = new ArrayList<>();
 		
 		for(CalendarListEntry cle : service.calendarList().list().execute().getItems())
 			calendars.add(cle.getId());
@@ -56,6 +58,52 @@ public class GoogleCalendar
 						&& e.getDescription() != null && e.getDescription().equals(listing.toString())
 						&& e.getStart().getDateTime().getValue() == listing.getStartTime()
 						&& e.getEnd().getDateTime().getValue() == listing.getEndTime())
+				  exists = true;
+		  }
+		  pageToken = events.getNextPageToken();
+		} while (pageToken != null);
+		
+		if(!exists)
+		{
+			Event e = service.events().insert(calendarId, event).execute();
+			return "Added '" + e.getSummary() + "' to '" + service.calendars().get(calendarId).execute().getSummary() + "' calendar";
+		}
+		else
+			return "Event already exists in calendar";
+	}
+
+	public static String createEvent(Calendar service, String calendarId, Game game) throws IOException 
+	{
+		String summary = game.toString();
+		EventDateTime startTime = new EventDateTime()
+				.setTimeZone(EST)
+				.setDateTime(new DateTime(game.getDateTime()));
+		
+		Date endTimeJoda = new org.joda.time.DateTime(game.getDateTime())
+				.plusHours(3)
+				.toDate();
+		
+		EventDateTime endTime = new EventDateTime()
+				.setTimeZone(EST)
+				.setDateTime(new DateTime(endTimeJoda));
+		
+		Event event = new Event()
+		.setSummary(summary)
+		.setStart(startTime)
+		.setEnd(endTime);
+		
+		boolean exists = false;
+		
+		String pageToken = null;
+		do {
+		  Events events = service.events().list(calendarId).setPageToken(pageToken).execute();
+		  List<Event> items = events.getItems();
+		  for (Event e : items) {
+			  if(e.getSummary() != null 
+						&& e.getSummary().equals(game.toString())
+						&& e.getDescription() != null && e.getDescription().equals(game.toString())
+						&& e.getStart().getDateTime().getValue() == game.getDateTime().getTime()
+						&& e.getEnd().getDateTime().getValue() == endTimeJoda.getTime())
 				  exists = true;
 		  }
 		  pageToken = events.getNextPageToken();
