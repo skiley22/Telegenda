@@ -1,6 +1,10 @@
 <!-- Generated from app.yaml. Do not edit. -->
 <web-app version='2.5' xmlns='http://java.sun.com/xml/ns/javaee' xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance' xsi:schemaLocation='http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd'>
   <servlet>
+    <servlet-name>LeaguePassServlet</servlet-name>
+    <servlet-class>com.telegenda.presentation.LeaguePassServlet</servlet-class>
+  </servlet>
+  <servlet>
     <servlet-name>OAuth2Callback</servlet-name>
     <servlet-class>com.telegenda.presentation.OAuth2Callback</servlet-class>
   </servlet>
@@ -36,6 +40,10 @@
     <filter-name>AuthFilter</filter-name>
     <filter-class>com.telegenda.presentation.AuthFilter</filter-class>
   </filter>
+  <servlet-mapping>
+    <servlet-name>LeaguePassServlet</servlet-name>
+    <url-pattern>/LeaguePassServlet/*</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>OAuth2Callback</servlet-name>
     <url-pattern>/oauth2callback/*</url-pattern>
