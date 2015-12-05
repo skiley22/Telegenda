@@ -3,7 +3,6 @@ package com.telegenda.integration;
 import java.io.IOException;
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.google.api.client.util.DateTime;
@@ -12,6 +11,7 @@ import com.google.api.services.calendar.model.CalendarListEntry;
 import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.Events;
+
 import com.telegenda.business.Game;
 import com.telegenda.business.Listing;
 
@@ -74,18 +74,14 @@ public class GoogleCalendar
 
 	public static String createEvent(Calendar service, String calendarId, Game game) throws IOException 
 	{
+		org.joda.time.DateTime jodaTime = new org.joda.time.DateTime(game.getDateTime()).plusHours(5);
+		
 		String summary = game.toString();
 		EventDateTime startTime = new EventDateTime()
-				.setTimeZone(EST)
-				.setDateTime(new DateTime(game.getDateTime()));
-		
-		Date endTimeJoda = new org.joda.time.DateTime(game.getDateTime())
-				.plusHours(3)
-				.toDate();
+				.setDateTime(new DateTime(jodaTime.toDate()));
 		
 		EventDateTime endTime = new EventDateTime()
-				.setTimeZone(EST)
-				.setDateTime(new DateTime(endTimeJoda));
+				.setDateTime(new DateTime(jodaTime.plusHours(3).toDate()));
 		
 		Event event = new Event()
 		.setSummary(summary)
@@ -101,9 +97,7 @@ public class GoogleCalendar
 		  for (Event e : items) {
 			  if(e.getSummary() != null 
 						&& e.getSummary().equals(game.toString())
-						&& e.getDescription() != null && e.getDescription().equals(game.toString())
-						&& e.getStart().getDateTime().getValue() == game.getDateTime().getTime()
-						&& e.getEnd().getDateTime().getValue() == endTimeJoda.getTime())
+						&& e.getStart().getDateTime().getValue() == jodaTime.getMillis())
 				  exists = true;
 		  }
 		  pageToken = events.getNextPageToken();
@@ -112,9 +106,9 @@ public class GoogleCalendar
 		if(!exists)
 		{
 			Event e = service.events().insert(calendarId, event).execute();
-			return "Added '" + e.getSummary() + "' to '" + service.calendars().get(calendarId).execute().getSummary() + "' calendar";
+			return "Added '" + e.getSummary() + "' to '" + service.calendars().get(calendarId).execute().getSummary() + "' calendar" + "\n";
 		}
 		else
-			return "Event already exists in calendar";
+			return "Event already exists in calendar \n";
 	}
 }

@@ -7,6 +7,6 @@
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-io-2.4.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/commons-lang3-3.4.jar"/>
 	<classpathentry kind="lib" path="war/WEB-INF/lib/joda-time-2.9.1.jar"/>
-	<classpathentry kind="con" path="com.google.gdt.eclipse.managedapis.MANAGED_API_CONTAINER/calendar-v3r154lv1.18.0-rc"/>
+	<classpathentry kind="con" path="com.google.gdt.eclipse.managedapis.MANAGED_API_CONTAINER/calendar-v3r155lv1.18.0-rc"/>
 	<classpathentry kind="output" path="war/WEB-INF/classes"/>
 </classpath>

@@ -23,9 +23,8 @@ import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.services.calendar.Calendar;
 import com.google.api.services.calendar.CalendarScopes;
 import com.telegenda.business.Game;
+import com.telegenda.integration.ExternalDataDao;
 import com.telegenda.integration.GoogleCalendar;
-import com.telegenda.integration.ScheduleDao;
-import com.telegenda.integration.StandingsDao;
 
 public class LeaguePassServlet extends HttpServlet
 {
@@ -39,6 +38,8 @@ public class LeaguePassServlet extends HttpServlet
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException 
 	{
+		String output = "Output: ";
+		
 		try
 		{
 			httpTransport = GoogleNetHttpTransport.newTrustedTransport();
@@ -54,19 +55,25 @@ public class LeaguePassServlet extends HttpServlet
 			Calendar service = new Calendar.Builder(httpTransport, JSON_FACTORY,
 					credential).setApplicationName("telegenda-webservice").build();
 		
-			List<Game> games = ScheduleDao.getSchedule();
-			Map<String, Double> standings = StandingsDao.getStandings();
+			List<Game> games = ExternalDataDao.getSchedule();
+			Map<String, Double> winPercentsMap = ExternalDataDao.getWinPercents();
 			
 			for(Game g : games)
 			{
-				if(standings.get(g.getHome()) >= .5 && standings.get(g.getVisitor()) >= .5)
-					if(new DateTime(g.getDateTime()).getWeekOfWeekyear() == new DateTime().getWeekOfWeekyear())
-						GoogleCalendar.createEvent(service, tvCalendarId, g);
+				DateTime currentDate = new DateTime();
+				DateTime futureDate = currentDate.plusDays(8);
+				
+				if(g.getDateTime().equals(currentDate) || 
+						(g.getDateTime().after(currentDate.toDate()) && g.getDateTime().before(futureDate.toDate())))				
+					if(winPercentsMap.get(g.getHome()) > .5 && winPercentsMap.get(g.getVisitor()) > .5)
+						output += GoogleCalendar.createEvent(service, tvCalendarId, g);
 			}
 		}
 		catch(Exception e)
 		{
+			output += ExceptionUtils.getStackTrace(e);
 			log.log(Level.SEVERE, ExceptionUtils.getStackTrace(e));
 		}
+		response.getWriter().println(output);
 	}
 }

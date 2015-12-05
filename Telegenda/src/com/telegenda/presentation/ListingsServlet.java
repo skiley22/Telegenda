@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
-import com.telegenda.integration.TvGuideDao;
+import com.telegenda.integration.ExternalDataDao;
 
 public class ListingsServlet extends HttpServlet
 {
@@ -19,6 +19,6 @@ public class ListingsServlet extends HttpServlet
 		if(!request.getParameterMap().containsKey("keyword"))
 			response.getWriter().println("No keyword provided");
 		else
-			response.getWriter().println(new Gson().toJson(TvGuideDao.getListings(request.getParameter("keyword").toLowerCase())));
+			response.getWriter().println(new Gson().toJson(ExternalDataDao.getListings(request.getParameter("keyword").toLowerCase())));
 	}
 }

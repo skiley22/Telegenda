@@ -42,7 +42,7 @@
   </filter>
   <servlet-mapping>
     <servlet-name>LeaguePassServlet</servlet-name>
-    <url-pattern>/LeaguePassServlet/*</url-pattern>
+    <url-pattern>/LeaguePassServlet</url-pattern>
   </servlet-mapping>
   <servlet-mapping>
     <servlet-name>OAuth2Callback</servlet-name>

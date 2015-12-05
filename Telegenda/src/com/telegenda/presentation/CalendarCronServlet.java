@@ -25,7 +25,7 @@ import com.telegenda.business.Listing;
 import com.telegenda.business.SavedKeyword;
 import com.telegenda.integration.GoogleCalendar;
 import com.telegenda.integration.TelegendaCronDao;
-import com.telegenda.integration.TvGuideDao;
+import com.telegenda.integration.ExternalDataDao;
 
 public class CalendarCronServlet extends HttpServlet
 {
@@ -56,7 +56,7 @@ public class CalendarCronServlet extends HttpServlet
 					credential).setApplicationName("telegenda-webservice").build();
 				
 			for(SavedKeyword o : TelegendaCronDao.getCrons())
-				for(Listing l : TvGuideDao.getListings(o.getKeywordName()))
+				for(Listing l : ExternalDataDao.getListings(o.getKeywordName()))
 					GoogleCalendar.createEvent(service, o.getCalendarId(), l);
 		}
 		catch(Exception e)
