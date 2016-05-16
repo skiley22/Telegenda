@@ -20,7 +20,7 @@
 			<select id="calendarList" ng-model="selectedCalendar"
 							ng-options="calendar.summary for calendar in calendars">
 			</select>
-			<button type="button" ng-disabled="disableSaveButton" ng-click="saveKeyword()"> 
+			<!-- <button type="button" ng-disabled="disableSaveButton" ng-click="saveKeyword()"> -->
 			<!-- ng-style="saveKeywordButtonStyle" -->
 				{{saveKeywordButtonText}}
 			</button>
@@ -55,17 +55,17 @@
 				Next
 			</button>
 		</div>
-		<div id="manageKeywords">
+		<!--<div id="manageKeywords">
 			<label for="keywordList">Saved Keywords</label>
 			<select id="keywordList" ng-model="selectedKeyword"
 							ng-options="keyword.keywordName for keyword in keywords">
 			</select>
 			
 			<button type="button" ng-disabled="disableDeleteButton" ng-click="deleteKeyword()">
-			<!-- ng-style="saveKeywordButtonStyle" -->
+			 ng-style="saveKeywordButtonStyle" 
 				{{deleteKeywordButtonText}}
 			</button>
-		</div>
+		</div>-->
 		<a ng-href="{{logoutUrl}}">Logout</a>
 <!-- 		<div id="blacklist">
 			<label for="blacklist">Blacklist</label>
