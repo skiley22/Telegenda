@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.api.services.calendar.Calendar;
-import com.telegenda.business.SavedKeyword;
+import com.telegenda.business.Keyword;
 
 public class TelegendaCronDao 
 {
@@ -30,7 +30,7 @@ public class TelegendaCronDao
 		return DriverManager.getConnection(url);
 	}	
 	
-	public static int createCron(SavedKeyword o) throws SQLException
+	public static int createCron(Keyword o) throws SQLException
 	{
 		PreparedStatement ps = getConnection().prepareStatement("INSERT INTO Keywords (calendarId, keywordName) VALUES (?,?);");
 		ps.setString(1, o.getCalendarId());
@@ -38,7 +38,7 @@ public class TelegendaCronDao
 		
 		return ps.executeUpdate();
 	}
-	public static List<SavedKeyword> getCrons(Calendar service) throws SQLException, IOException
+	public static List<Keyword> getCrons(Calendar service) throws SQLException, IOException
 	{
 		List<String> calendars = GoogleCalendar.getCalendarIdList(service);
 		StringBuilder sb = new StringBuilder();
@@ -57,22 +57,22 @@ public class TelegendaCronDao
 		PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM Keywords" + sb.toString());
 
 		ResultSet rs = ps.executeQuery();
-		ArrayList<SavedKeyword> orders = new ArrayList<SavedKeyword>();
+		ArrayList<Keyword> orders = new ArrayList<Keyword>();
 		
 		while (rs.next() == true)
-			orders.add(new SavedKeyword(rs.getInt("keywordId"),rs.getString("calendarId"),rs.getString("keywordName")));
+			orders.add(new Keyword(rs.getInt("keywordId"),rs.getString("calendarId"),rs.getString("keywordName")));
 
 		return orders;
 	}
-	public static List<SavedKeyword> getCrons() throws SQLException, IOException
+	public static List<Keyword> getCrons() throws SQLException, IOException
 	{
 		PreparedStatement ps = getConnection().prepareStatement("SELECT * FROM Keywords");
 
 		ResultSet rs = ps.executeQuery();
-		ArrayList<SavedKeyword> orders = new ArrayList<SavedKeyword>();
+		ArrayList<Keyword> orders = new ArrayList<Keyword>();
 		
 		while (rs.next() == true)
-			orders.add(new SavedKeyword(rs.getInt("keywordId"),rs.getString("calendarId"),rs.getString("keywordName")));
+			orders.add(new Keyword(rs.getInt("keywordId"),rs.getString("calendarId"),rs.getString("keywordName")));
 
 		return orders;
 	}

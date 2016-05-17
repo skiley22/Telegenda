@@ -22,7 +22,7 @@ import com.google.api.services.calendar.CalendarScopes;
 import com.google.api.services.calendar.model.AclRule;
 import com.google.api.services.calendar.model.AclRule.Scope;
 import com.telegenda.business.Listing;
-import com.telegenda.business.SavedKeyword;
+import com.telegenda.business.Keyword;
 import com.telegenda.integration.GoogleCalendar;
 import com.telegenda.integration.TelegendaCronDao;
 import com.telegenda.integration.ExternalDataDao;
@@ -55,7 +55,7 @@ public class CalendarCronServlet extends HttpServlet
 			Calendar service = new Calendar.Builder(httpTransport, JSON_FACTORY,
 					credential).setApplicationName("telegenda-webservice").build();
 				
-			for(SavedKeyword o : TelegendaCronDao.getCrons())
+			for(Keyword o : TelegendaCronDao.getCrons())
 				for(Listing l : ExternalDataDao.getListings(o.getKeywordName()))
 					GoogleCalendar.createEvent(service, o.getCalendarId(), l);
 		}
@@ -83,7 +83,7 @@ public class CalendarCronServlet extends HttpServlet
 		{
 			Calendar service = Utils.loadCalendarClient();
 			
-			for(SavedKeyword sk : TelegendaCronDao.getCrons(service))
+			for(Keyword sk : TelegendaCronDao.getCrons(service))
 				if(sk.getKeywordName().equals(keyword))
 				{
 					response.getWriter().println("You have already saved this keyword");
@@ -104,7 +104,7 @@ public class CalendarCronServlet extends HttpServlet
 				rule.setScope(scope).setRole("writer");
 				service.acl().insert(calendarId, rule).execute();
 			}
-			int result = TelegendaCronDao.createCron(new SavedKeyword(calendarId, keyword));	
+			int result = TelegendaCronDao.createCron(new Keyword(calendarId, keyword));	
 			
 			if(result > 0)
 				output.append("Successfully saved keyword - check your calendar for new shows!");

@@ -1,18 +1,18 @@
 package com.telegenda.business;
 
-public class SavedKeyword 
+public class Keyword 
 {
 	private String calendarId;
 	private String keywordName;
 	private int keywordId;
 	
-	public SavedKeyword(int keywordId, String calendarId, String keywordName)
+	public Keyword(int keywordId, String calendarId, String keywordName)
 	{
 		this.keywordId = keywordId;
 		this.calendarId = calendarId;
 		this.keywordName = keywordName;
 	}
-	public SavedKeyword(String calendarId, String keywordName)
+	public Keyword(String calendarId, String keywordName)
 	{
 		this.calendarId = calendarId;
 		this.keywordName = keywordName;
