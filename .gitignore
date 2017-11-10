@@ -16,3 +16,6 @@ hs_err_pid*
 .project
 .settings/*
 war/META-INF/MANIFEST.MF
+
+.idea/*
+*.iml
