@@ -41,10 +41,19 @@
 					<td>{{listing.channel}}</td>
 					<td>{{listing.startTime | date:'medium'}}</td>
 					<!-- <td>{{listing.endTime}}</td> -->
-					<td><button ng-click="addEvent(listing)">Add to calendar</button></td>			
+					<td><button ng-click="addEvent(listing)">Add to calendar</button></td>
 				</tr>
 			</table>
 		</div>
+
+
+
+
+
+
+
+
+
 		<div id="pagination" ng-hide="nothingSearched">
 			<!-- <button ng-disabled="currentPage == 0" ng-click="currentPage=currentPage-1"> -->
 			<button ng-disabled="listings.length == 0 || currentPage == 0" ng-click="currentPage=currentPage-1">
@@ -60,9 +69,9 @@
 			<select id="keywordList" ng-model="selectedKeyword"
 							ng-options="keyword.keywordName for keyword in keywords">
 			</select>
-			
+
 			<button type="button" ng-disabled="disableDeleteButton" ng-click="deleteKeyword()">
-			 ng-style="saveKeywordButtonStyle" 
+			 ng-style="saveKeywordButtonStyle"
 				{{deleteKeywordButtonText}}
 			</button>
 		</div>-->
